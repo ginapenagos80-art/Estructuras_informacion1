@@ -48,16 +48,14 @@ class Vereda:
     def consultar_reservas(self):
         return [t.nivel_actual for t in self.tanques]
 
-"""Rama 2 - calculadora: lógica recursiva y creación de los objetos."""
 from modelo import Pila, Tanque, Familia, Vereda
-
 
 class CalculadoraReservas:
     def consumo_diarioT(self, familias):
         return sum(f.consultar_consumo() for f in familias) / 7
 
     def dias_agua(self, pila, diario, pendiente=None):
-        """Días completos que alcanza el agua (RECURSIVO). El tope es el tanque en uso."""
+       
         pendiente = diario if pendiente is None else pendiente
         if pila.esta_vacia():                      
             return 0
@@ -68,7 +66,7 @@ class CalculadoraReservas:
         return self.dias_agua(pila, diario, pendiente - nivel)  
 
 def crear_vereda(nombre, municipio, niveles, n_familias, consumo_semanal):
-    """Crea la vereda con sus tanques (capacidad 30.000 L) y sus familias."""
+   
     vereda = Vereda(nombre, municipio)
     for i, nivel in enumerate(niveles, start=1):
         tanque = Tanque(i, 30000)
